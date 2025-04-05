@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search - Pangasinan Travels</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f9f9f9;
+      }
+      .header {
+        background: #d87f41;
+        padding: 10px;
+        text-align: center;
+        font-size: 18px;
+        color: white;
+      }
+      .search-container {
+        text-align: center;
+        padding: 20px;
+      }
+      .search-box {
+        width: 50%;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      .search-results {
+        max-width: 800px;
+        margin: auto;
+        padding: 20px;
+      }
+      .result-item {
+        background: white;
+        padding: 15px;
+        border-radius: 5px;
+        margin: 10px 0;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">SEARCH</div>
+
+    <div class="search-container">
+      <input
+        type="text"
+        id="searchInput"
+        class="search-box"
+        placeholder="Search places..."
+      />
+    </div>
+
+    <div class="search-results" id="resultsContainer">
+      <!-- Search results will be displayed here -->
+    </div>
+
+    <script>
+      const places = [
+        "Lingayen",
+        "Binmaley",
+        "Manaoag",
+        "Bolinao",
+        "Sual",
+        "Alaminos",
+        "Burgos",
+        "Dasol",
+      ];
+
+      document
+        .getElementById("searchInput")
+        .addEventListener("input", function () {
+          let query = this.value.toLowerCase();
+          let results = places.filter((place) =>
+            place.toLowerCase().includes(query)
+          );
+          let resultsContainer = document.getElementById("resultsContainer");
+          resultsContainer.innerHTML = "";
+
+          results.forEach((place) => {
+            let div = document.createElement("div");
+            div.className = "result-item";
+            div.textContent = place;
+            resultsContainer.appendChild(div);
+          });
+        });
+    </script>
+  </body>
+</html>
