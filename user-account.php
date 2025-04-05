@@ -79,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['signin'])) {
             'created_at' => $user['created_at']
         ];
 
-        header('Location: home.php');
+        header('Location: loggedin_acc.php');
         exit();
     } else {
         $errors['login'] = 'Invalid email or password';

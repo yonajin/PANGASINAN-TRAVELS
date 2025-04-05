@@ -1,9 +1,21 @@
+<?php
+session_start();
+if(isset($_SESSION['user'])){
+    $user = $_SESSION['user'];
+
+}else{
+    header("Location: login.php");
+    exit();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <link rel="stylesheet" href="home_page.css" />
+    <link rel="stylesheet" href="loggedin_acc.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap" rel="stylesheet">
@@ -48,9 +60,11 @@
       </picture>
       <!-- New text content -->
       <div class="hero-text">
-        <h1>Welcome to Pangasinan</h1>
-        <p>Start exploring the beauty of Pangasinan</p>
-        <a href="login.php" class="cta-btn">Start Planning ></a>
+        <h1>Welcome back!</h1>
+        <?php
+        echo '<p>' . $user['name'] . '</p>';
+        ?>
+        <a href="home_page.html" class="cta-btn">Log out ></a>
       </div>
       <div class="places">
         <div class="tab">
