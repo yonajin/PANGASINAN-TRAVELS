@@ -4,11 +4,29 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pangasinan Travels - Places</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="home_page.css" />
     <style>
       .current {
         background-color: rgba(211, 211, 211, 0.8);
         font-weight: 500;
+      }
+
+      .hero-text {
+        position: absolute;
+        top: 45%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        text-align: center;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+      }
+
+      .hero-text h1 {
+        margin-bottom: 160px;
+        font-family: "Alfa Slab One", serif;
+        font-size: 50px;
+        font-weight: 400;
+        -webkit-text-stroke: 2px rgba(0, 0, 0, 0.4); /* Thin black stroke */
       }
     </style>
   </head>
@@ -28,7 +46,23 @@
     </header>
     <main>
       <div class="places">
-        <img src="images/places.jpg" alt="Clear skies at Cabongaoan Beach" />
+        <!--<img src="images/places.jpg" alt="Clear skies at Cabongaoan Beach" />-->
+        <picture>
+          <source
+            class="display_image"
+            media="(min-width: 800px)"
+            srcset="images\places.jpg"
+            alt="Welcome to Pangasinan"
+          />
+          <img
+            class="display_image"
+            src="images\places.jpg"
+            alt="Welcome to Pangasinan"
+          />
+        </picture>
+        <div class="hero-text">
+          <h1>Places in Pangasinan</h1>
+        </div>
         <div class="tab">
           <button
             class="tabLink"
@@ -37,25 +71,45 @@
           >
             Lingayen
           </button>
-          <button class="tabLink" onclick="openCity(event, 'Binmaley')">
+          <button
+            class="tabLink"
+            id="binmaley"
+            onclick="openCity(event, 'Binmaley')"
+          >
             Binmaley
           </button>
-          <button class="tabLink" onclick="openCity(event, 'Manaoag')">
+          <button
+            class="tabLink"
+            id="manaoag"
+            onclick="openCity(event, 'Manaoag')"
+          >
             Manaoag
           </button>
-          <button class="tabLink" onclick="openCity(event, 'Bolinao')">
+          <button
+            class="tabLink"
+            id="bolinao"
+            onclick="openCity(event, 'Bolinao')"
+          >
             Bolinao
           </button>
-          <button class="tabLink" onclick="openCity(event, 'Sual')">
+          <button class="tabLink" id="sual" onclick="openCity(event, 'Sual')">
             Sual
           </button>
-          <button class="tabLink" onclick="openCity(event, 'Alaminos')">
+          <button
+            class="tabLink"
+            id="alaminos"
+            onclick="openCity(event, 'Alaminos')"
+          >
             Alaminos
           </button>
-          <button class="tabLink" onclick="openCity(event, 'Burgos')">
+          <button
+            class="tabLink"
+            id="burgos"
+            onclick="openCity(event, 'Burgos')"
+          >
             Burgos
           </button>
-          <button class="tabLink" onclick="openCity(event, 'Dasol')">
+          <button class="tabLink" id="dasol" onclick="openCity(event, 'Dasol')">
             Dasol
           </button>
         </div>
@@ -114,6 +168,50 @@
         </div>
         <div class="gallery" id="gallery"></div>
       </div>
+      <section class="reviews-section">
+        <h2><em>Reviews</em></h2>
+        <div class="rating-filter">
+          <button class="star-rating">★★★★★</button>
+          <button class="star-rating">★★★★☆</button>
+          <button class="star-rating">★★★☆☆</button>
+          <button class="star-rating">★★☆☆☆</button>
+          <button class="star-rating">★☆☆☆☆</button>
+        </div>
+        <div class="reviews-container">
+          <div class="review-card">
+            <div class="reviewer">⚫ Juan Gonzales</div>
+            <p>
+              “ The place is very nice and clean. The people are friendly, good
+              for family bonding.”
+            </p>
+          </div>
+          <div class="review-card">
+            <div class="reviewer">⚫ Juan Gonzales</div>
+            <p>
+              “ The place is very nice and clean. The people are friendly, good
+              for family bonding.”
+            </p>
+          </div>
+          <div class="review-card">
+            <div class="reviewer">⚫ Juan Gonzales</div>
+            <p>
+              “ The place is very nice and clean. The people are friendly, good
+              for family bonding.”
+            </p>
+          </div>
+          <div class="review-card">
+            <div class="reviewer">⚫ Juan Gonzales</div>
+            <p>
+              “ The place is very nice and clean. The people are friendly, good
+              for family bonding.”
+            </p>
+          </div>
+        </div>
+        <div class="pagination">
+          <button class="prev">&lt;</button>
+          <button class="next">&gt;</button>
+        </div>
+      </section>
     </main>
     <footer class="footer-99382">
       <div class="container">
@@ -417,6 +515,26 @@
           gallery.appendChild(div);
         });
       }
+
+      function showTab(placeId) {
+        document.querySelectorAll(".label").forEach((section) => {
+          section.classList.remove("active");
+        });
+        const target = document.getElementById(placeId);
+        if (target) {
+          target.classList.add("active");
+        }
+      }
+
+      // Auto-load tab from URL fragment (like #bolinao)
+      window.addEventListener("DOMContentLoaded", () => {
+        const hash = window.location.hash.substring(1); // Remove #
+        if (hash) {
+          showTab(hash.toLowerCase());
+        } else {
+          showTab("binmaley"); // default tab
+        }
+      });
     </script>
   </body>
 </html>

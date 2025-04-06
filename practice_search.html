@@ -89,9 +89,8 @@
             div.className = "result-item";
             div.textContent = place;
             div.onclick = function () {
-              window.location.href = `places.html?place=${encodeURIComponent(
-                place
-              )}`;
+              // Go to tab by ID via anchor
+              window.location.href = `practice_places.html#${place.toLowerCase()}`;
             };
             resultsContainer.appendChild(div);
           });

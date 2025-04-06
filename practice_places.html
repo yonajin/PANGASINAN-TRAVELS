@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Places - Pangasinan Travels</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        background-color: #f3f3f3;
+      }
+      .header {
+        background: #d87f41;
+        padding: 15px;
+        text-align: center;
+        color: white;
+        font-size: 24px;
+      }
+      .tabs {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 10px;
+      }
+      .tab {
+        padding: 10px 20px;
+        margin: 5px;
+        background: #ffe0c4;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .tab:hover {
+        background: #ffc28b;
+      }
+      .place-section {
+        display: none;
+        padding: 30px 20px;
+        margin: 20px auto;
+        max-width: 800px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .place-section.active {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">PLACES IN PANGASINAN</div>
+
+    <div class="tabs">
+      <button class="tab" onclick="showTab('lingayen')">Lingayen</button>
+      <button class="tab" onclick="showTab('binmaley')">Binmaley</button>
+      <button class="tab" onclick="showTab('manaoag')">Manaoag</button>
+      <button class="tab" onclick="showTab('bolinao')">Bolinao</button>
+      <button class="tab" onclick="showTab('sual')">Sual</button>
+      <button class="tab" onclick="showTab('alaminos')">Alaminos</button>
+      <button class="tab" onclick="showTab('burgos')">Burgos</button>
+      <button class="tab" onclick="showTab('dasol')">Dasol</button>
+    </div>
+
+    <div id="lingayen" class="place-section">
+      🏖️ <strong>Lingayen</strong> - Historic capital and beach!
+    </div>
+    <div id="binmaley" class="place-section">
+      🐟 <strong>Binmaley</strong> - Bangus capital of Pangasinan.
+    </div>
+    <div id="manaoag" class="place-section">
+      ⛪ <strong>Manaoag</strong> - Pilgrimage destination.
+    </div>
+    <div id="bolinao" class="place-section">
+      🌊 <strong>Bolinao</strong> - Crystal beaches and caves.
+    </div>
+    <div id="sual" class="place-section">
+      ⚓ <strong>Sual</strong> - Fishing and power plant area.
+    </div>
+    <div id="alaminos" class="place-section">
+      🏝️ <strong>Alaminos</strong> - Home of Hundred Islands.
+    </div>
+    <div id="burgos" class="place-section">
+      🏞️ <strong>Burgos</strong> - Peaceful and green.
+    </div>
+    <div id="dasol" class="place-section">
+      ⛱️ <strong>Dasol</strong> - Calm beach life.
+    </div>
+
+    <script>
+      function showTab(placeId) {
+        document.querySelectorAll(".place-section").forEach((section) => {
+          section.classList.remove("active");
+        });
+        const target = document.getElementById(placeId);
+        if (target) {
+          target.classList.add("active");
+        }
+      }
+
+      // Auto-load tab from URL fragment (like #bolinao)
+      window.addEventListener("DOMContentLoaded", () => {
+        const hash = window.location.hash.substring(1); // Remove #
+        if (hash) {
+          showTab(hash.toLowerCase());
+        } else {
+          showTab("lingayen"); // default tab
+        }
+      });
+    </script>
+  </body>
+</html>
